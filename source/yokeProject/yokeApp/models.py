@@ -1,4 +1,5 @@
 from django.db import models
+# Create your models here
 import uuid
 from datetime import datetime
 
@@ -55,6 +56,3 @@ class Message(models.Model):
     subject_line = models.CharField(max_length=64)
     text_body = models.CharField(max_length=2000)
     time_sent = models.DateTimeField(default=datetime.now, blank=True)
-
-
-
