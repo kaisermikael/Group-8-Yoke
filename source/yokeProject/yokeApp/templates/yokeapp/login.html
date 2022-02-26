@@ -8,12 +8,12 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Yoke</title>
+    <title>Login to Yoke</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(1, 1, 129);">
         <div class="container-fluid">
-            <a href="#" class="navbar-brand"><h1>Yoke</h1></a>
+            <a href="home_tasker.html" class="navbar-brand"><h1>Yoke</h1></a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,48 +21,34 @@
                 <div class="navbar-nav">
                 </div>
                 <div class="navbar-nav ms-auto">
-                    <a href="login.html" class="nav-item nav-link">Login</a>
-                </div>
-                <div class="navbar-nav ms-auto">
-                    <a href="create_account.html" class="nav-item nav-link">Create Account</a>
+                    <a href="#" class="nav-item nav-link">Login</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="container-lg">
-        <div class="row">
-            <div class="col-xl-4">
-                <div class="container text-white border py-3 my-3" style="background-color:  rgb(1, 1, 129);">
-                    <h2>Listed tasks</h2>
-                    <div class="container text-white border py-2 my-2" style="background-color:  rgb(1, 1, 129);">
-                        <div class="container">
-                            <!--Row with two equal columns-->
-                            <div class="row">
-                                <div class="col">This task</div>
-                                <div class="col"><button type="button" class="btn btn-primary" style="align-items: left;">View</button></div>
-                            </div>
-                        </div>
-                    </div>
-                    <p>task 2</p>
-                    <p>task 3</p>
-                </div>
+    <div class="container">
+        <h1>Create an Account</h1>
+        <form>
+            <div class="mb-3">
+                <label class="form-label" for="inputEmail">Email</label>
+                <input type="email" class="form-control" id="userEmail" placeholder="Email">
             </div>
-            <div class="col-xl-4">
-                <div class="container text-white border py-3 my-3" style="background-color:  rgb(1, 1, 129);">
-                    <h2>Previous tasks</h2>
-                    <p>task 1</p>
-                    <p>task 2</p>
-                    <p>task 3</p>
-                </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="inputPassword">Password</label>
+                <input type="password" class="form-control" id="userPassword" placeholder="Password">
             </div>
-            <div class="col-xl-4">
-                <div class="container text-white border py-3 my-3" style="background-color:  rgb(1, 1, 129);">
-                    <h2>Create a task</h2>
-                    <p><a href="create_task.html"><button type="button" class="btn btn-primary">Create</button></a></p>
-                </div>
-            </div>
+            <!-- <button type="submit" class="btn btn-primary">Login</button> -->
+        </form>
+
+        <div>
+            <a href="home_tasker.html"><button type="submit" class="btn btn-primary">Login</button></a>
         </div>
+
+
+
+
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
