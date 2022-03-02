@@ -1,0 +1,8 @@
+venv
+.idea
+.DS_Store
+__pycache__
+*.pyc
+*.zip
+*.bak
+db.sqlite3
