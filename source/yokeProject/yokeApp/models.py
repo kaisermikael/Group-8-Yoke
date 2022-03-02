@@ -13,13 +13,13 @@ class UserData(models.Model):
     # task_worker = 1
     # this defaults to task worker
     user_type = models.IntegerField(default=1)
-    username = models.CharField(max_length=64)
-    email = models.CharField(max_length=150)
-    first_name = models.CharField(max_length=64)
-    last_name = models.CharField(max_length=64)
+    username = models.CharField(max_length=64, null=False)
+    email = models.CharField(max_length=150, null=False)
+    first_name = models.CharField(max_length=64, null=False)
+    last_name = models.CharField(max_length=64, null=False)
     password = models.CharField(max_length=64)
     account_creation_date = models.DateTimeField(default=datetime.now, blank=True)
-    account_deletion_date = models.DateTimeField(default=None, blank=True)
+    account_deletion_date = models.DateTimeField(default=None, blank=True, null=True)
     account_balance = models.IntegerField(default=0)
     user_rating = models.FloatField(null=True, blank=True, default=None)
 
@@ -28,18 +28,19 @@ class UserData(models.Model):
 class Task(models.Model):
     # here we generate a unique UUID for a task
     task_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    created_by_user_id = UserData.user_id(null=False)
-    deleted_by_user_id = UserData.user_id(null=True)
-    queued_by_user_id = UserData.user_id(null=True)
-    completed_by_user_id = UserData.user_id(null=True)
+    created_by_user_id = UserData.user_id
+    deleted_by_user_id = UserData.user_id
+    queued_by_user_id = UserData.user_id
+    completed_by_user_id = UserData.user_id
     task_creation_time = models.DateTimeField(default=datetime.now, blank=True)
-    task_deletion_time = models.DateTimeFiled(default=None, blank=True)
+    task_deletion_time = models.DateTimeField(default=None, blank=True)
     task_cost = models.IntegerField(default=0)
     # Task Progress: 0 = incomplete, 1 = complete.
     task_progress = models.IntegerField(default=0)
     task_due_date = models.DateTimeField(default=None, blank=True)
     # Estimated Difficulty: 1-10 scale for difficulty and/or time cost of tasks
     estimated_difficulty = models.IntegerField(default=0)
+
 
 # this is the review table model with information that corresponds to a single user
 class Review(models.Model):
@@ -48,6 +49,7 @@ class Review(models.Model):
     text_body = models.CharField(max_length=1200)
     star_rating = models.IntegerField(default=0)
     about_task_id = Task.task_id
+
 
 # This is the messages table model with information that corresponds to a single message
 class Message(models.Model):

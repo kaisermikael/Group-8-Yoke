@@ -15,7 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from yokeProject.yokeApp.views import TaskerHomePage
+from yokeProject.yokeApp.views import WorkerHomePage
+from yokeProject.yokeApp.views import LoginPage
+from yokeProject.yokeApp.views import CreateTaskPage
+from yokeProject.yokeApp.views import CreateAccountPage
+from yokeProject.yokeApp.views import WorkerTaskViewPage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', TaskerHomePage.as_view()),
+    path('home_tasker', TaskerHomePage.as_view()),
+    path('home_worker', WorkerHomePage.as_view()),
+    path('login', LoginPage.as_view()),
+    path('create_task', CreateTaskPage.as_view()),
+    path('create_account', CreateAccountPage.as_view()),
+    path('worker_view_task', WorkerTaskViewPage.as_view()),
 ]
