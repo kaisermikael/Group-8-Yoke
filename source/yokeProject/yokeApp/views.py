@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from yokeProject.yokeApp.models import UserData
+from yokeProject.yokeApp.models import UserData, Task
 import json
 
 
