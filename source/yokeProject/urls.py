@@ -14,21 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from yokeProject.yokeApp.views import TaskerHomePage
+from django.contrib.auth.decorators import login_required
+from django.urls import path, include
 from yokeProject.yokeApp.views import WorkerHomePage
 from yokeProject.yokeApp.views import LoginPage
 from yokeProject.yokeApp.views import CreateTaskPage
 from yokeProject.yokeApp.views import CreateAccountPage
 from yokeProject.yokeApp.views import WorkerTaskViewPage
+from yokeProject.yokeApp.views import TaskerHomePage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', TaskerHomePage.as_view()),
     path('home_tasker', TaskerHomePage.as_view()),
     path('home_worker', WorkerHomePage.as_view()),
-    path('login', LoginPage.as_view()),
-    path('create_task', CreateTaskPage.as_view()),
+    # path('login', LoginPage.as_view()),
+    path('create_task', login_required(CreateTaskPage.as_view())),
     path('create_account', CreateAccountPage.as_view()),
     path('worker_view_task', WorkerTaskViewPage.as_view()),
 ]

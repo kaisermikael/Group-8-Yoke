@@ -21,45 +21,51 @@
                 <div class="navbar-nav">
                 </div>
                 <div class="navbar-nav ms-auto">
-                    <a href="login" class="nav-item nav-link">Login</a>
+                    <a href="/accounts/login" class="nav-item nav-link">Login</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container was-validated">
         <h1>Create an Account</h1>
-
-
+        {% if sorry_message %}
+        <div>
+            <h1 style="color: red;">
+                Sorry that {{ info_type }} is taken!
+            </h1>
+        </div>
+        {% else %}
+        {% endif %}
         <form action="create_account" method="post" role="form" class="form-horizontal">{% csrf_token %}
             <div class="mb-3">
                 <label class="form-label" for="inputFName">First Name</label>
-                <input name="first_name" type="text" class="form-control" id="userFirstName" placeholder="First Name">
+                <input name="first_name" type="text" class="form-control" id="userFirstName" placeholder="First Name"  required>
             </div>
             
             <div class="mb-3">
                 <label class="form-label" for="inputLName">Last Name</label>
-                <input name="last_name" type="text" class="form-control" id="userLastName" placeholder="Last Name">
+                <input name="last_name" type="text" class="form-control" id="userLastName" placeholder="Last Name"  required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="inputUsername">Username</label>
-                <input name="username" type="text" class="form-control" id="username" placeholder="username">
+                <input name="username" type="text" class="form-control" id="username" placeholder="username"  required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="inputEmail">Email</label>
-                <input name="email" type="email" class="form-control" id="userEmail" placeholder="Email">
+                <input name="email" type="email" class="form-control" id="userEmail" placeholder="Email"  required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="inputPassword">Password</label>
-                <input name="password_1" type="password" class="form-control" id="userPassword" placeholder="Password">
+                <label class="form-label" for="inputPassword" >Password</label>
+                <input name="password_1" type="password" class="form-control" id="userPassword" placeholder="Password"  required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="inputPassword2">Re-Type Password</label>
-                <input name="password_2" type="password" class="form-control" id="userPassword2" placeholder="Password">
+                <label class="form-label" for="inputPassword2" >Re-Type Password</label>
+                <input name="password_2" type="password" class="form-control" id="userPassword2" placeholder="Password"  required>
             </div>
              <button type="submit" class="btn btn-primary">Create Account</button>
         </form>
