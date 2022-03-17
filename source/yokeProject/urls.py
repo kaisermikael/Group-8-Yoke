@@ -22,6 +22,7 @@ from yokeProject.yokeApp.views import CreateTaskPage
 from yokeProject.yokeApp.views import CreateAccountPage
 from yokeProject.yokeApp.views import WorkerTaskViewPage
 from yokeProject.yokeApp.views import TaskerHomePage
+from yokeProject.yokeApp.views import HomePage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +34,5 @@ urlpatterns = [
     path('create_task', login_required(CreateTaskPage.as_view())),
     path('create_account', CreateAccountPage.as_view()),
     path('worker_view_task', WorkerTaskViewPage.as_view()),
+    path('home', HomePage.as_view()),
 ]

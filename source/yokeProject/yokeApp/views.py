@@ -22,6 +22,11 @@ class WorkerHomePage(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'yokeapp/home_worker.html', {})
+    
+class HomePage(View):
+    
+    def get(self, request, *args, **kwargs):
+        return render(request, 'yokeapp/home.html', {})
 
 
 class LoginPage(View):

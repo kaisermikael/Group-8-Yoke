@@ -21,7 +21,7 @@
                 <div class="navbar-nav">
                 </div>
                 <div class="navbar-nav ms-auto">
-                    <a href="home_tasker" class="nav-item nav-link">Tasker Page</a>
+                    <a href="home_worker" class="nav-item nav-link">Worker Page</a>
                 </div>
                 <div class="navbar-nav ms-auto">
                     <a href="/accounts/login" class="nav-item nav-link">Login</a>
@@ -37,30 +37,40 @@
         <div class="row">
             <div class="col-xl-4">
                 <div class="container text-white border py-3 my-3" style="background-color:  rgb(1, 1, 129);">
-                    <h2>Current Tasks</h2>
+                    <h2>Tasks You've Posted</h2>
                     <div class="container text-black border py-2 my-2" style="background-color:  rgb(255, 255, 255);">
                         <div class="container">
                             <!--Row with two equal columns-->
                             <div class="row">
                                 <div class="col">
-                                    <p>Mow Lawn</p>
-                                    <p>Clearfield, UT</p>
-                                    <p>Due by Mar 25</p>
+                                    <p>Cry because 4.29 a gallon</p>
+                                    <p>Everywhere</p>
+                                    <p>Due by Jan 20</p>
                                 </div>
-                                <div class="col"><button type="button" class="btn btn-primary" style="align-items: left;">View</button></div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
+                                    <p>Accepted by Nobody</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="container text-white border py-3 my-3" style="background-color:  rgb(1, 1, 129);">
+                    <h2>Tasks You're Working On</h2>
                     <div class="container text-black border py-2 my-2" style="background-color:  rgb(255, 255, 255);">
                         <div class="container">
-                            <!--Row with two equal columns-->
                             <div class="row">
                                 <div class="col">
                                     <p>Shovel Snow</p>
                                     <p>Star Valley, WY</p>
                                     <p>Due by Dec 15</p>
                                 </div>
-                                <div class="col"><a href="worker_view_task"><button type="button" class="btn btn-primary" style="align-items: left;">View</button></a></div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
+                                    <p>Accepted by Donald T</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -68,14 +78,45 @@
             </div>
             <div class="col-xl-4">
                 <div class="container text-white border py-3 my-3" style="background-color:  rgb(1, 1, 129);">
-                    <h2>Previous tasks</h2>
-                    <p>No previous tasks</p>
+                    <h2>Task History</h2>
+                    <div class="container text-black border py-2 my-2" style="background-color:  rgb(255, 255, 255);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <p>Rake Leaves</p>
+                                    <p>Star Valley, WY</p>
+                                    <p>Completed on Dec 25</p>
+                                </div>
+                                <div class="col"><button type="button" class="btn btn-primary" style="align-items: left;">View</button></div>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="container text-black border py-2 my-2" style="background-color:  rgb(255, 255, 255);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <p>Mow Lawn</p>
+                                    <p>Star Valley, WY</p>
+                                    <p>Completed on Jan 6</p>
+                                </div>
+                                <div class="col"><button type="button" class="btn btn-primary" style="align-items: left;">View</button></div>
+                            </div>
+                        </div>                        
+                    </div>
                 </div>
             </div>
             <div class="col-xl-4">
                 <div class="container text-white border py-3 my-3" style="background-color:  rgb(1, 1, 129);">
-                    <h2>Find Tasks</h2>
-                    <p><a href="create_task"><button type="button" class="btn btn-primary">Find</button></a></p>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <p><a href="create_task"><button type="button" class="btn btn-primary">Create a Task</button></a></p>
+                            </div>
+                            <div class="col">
+                                <p><a href="create_task"><button type="button" class="btn btn-primary">Browse Tasks</button></a></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
