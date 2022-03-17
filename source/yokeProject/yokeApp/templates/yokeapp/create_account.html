@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -11,20 +12,24 @@
     <title>Create Account</title>
   </head>
   <body>
+    <!-- nav bar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(1, 1, 129);">
-        <div class="container-fluid">
-            <a href="home_tasker" class="navbar-brand"><h1>Yoke</h1></a>
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="d-flex justify-content-center flex-row">
+                 <a href="/" class=""><img src="{% static "yoke-transparent.png" %}" alt="My image" style="width: 150px;height: 60px"></a>
+                 <a href="/" class="navbar-brand" style="padding-left: 10px"><h1>Yoke</h1></a>
+            </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav">
-                </div>
                 <div class="navbar-nav ms-auto">
-                    <a href="/accounts/login" class="nav-item nav-link">Login</a>
+                    <a href="/home/posted/" class="nav-item nav-link">My Posted Tasks</a>
+                    <a href="/home/accepted/" class="nav-item nav-link">My Accepted Tasks</a>
                 </div>
             </div>
-        </div>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto">
+                    <a href="/accounts/login" class="nav-item nav-link">Login</a>
+                    <a href="/create_account" class="nav-item nav-link">Create Account</a>
+                </div>
+            </div>
     </nav>
 
     <div class="container was-validated">
