@@ -10,12 +10,37 @@ from yokeProject.yokeApp.models import UserData, Task
 from django.db import IntegrityError
 from rest_framework.authtoken.models import Token
 import json
+from django.http import HttpResponseNotFound
 
 
 class TaskerHomePage(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'yokeapp/home_tasker.html', {})
+    
+class HomePage(View):
+
+    def get(self, request, home_type=None, *args, **kwargs):
+        posted = False
+        accepted = False
+        default = False
+        # print("got home type: {}".format(home_type))
+        if home_type == "posted":
+            posted = True
+        elif home_type == "accepted":
+            accepted = True
+        else:
+            default = True
+
+        user_posted_tasks = Task.objects.filter(created_by_user_id=request.user.id)
+        user_accepted_tasks = Task.objects.filter(queued_by_user_id=request.user.id)
+
+        # print(("posted tasks for user {}:".format(request.user.first_name)))
+        return render(request, 'yokeapp/home.html', {"user_posted_tasks": user_posted_tasks,
+                                                     "posted": posted,
+                                                     "accepted": accepted,
+                                                     "default": default,
+                                                     "user_accepted_tasks": user_accepted_tasks})
 
 
 class WorkerHomePage(View):
@@ -50,7 +75,7 @@ class CreateTaskPage(View):
         # print("got user: {}".format(user_dict))
         # print("created task: {}".format(task))
 
-        return render(request, 'yokeapp/home_worker.html', {})
+        return redirect('home/posted/')
 
 
 class CreateAccountPage(View):

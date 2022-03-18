@@ -22,15 +22,17 @@ from yokeProject.yokeApp.views import CreateTaskPage
 from yokeProject.yokeApp.views import CreateAccountPage
 from yokeProject.yokeApp.views import WorkerTaskViewPage
 from yokeProject.yokeApp.views import TaskerHomePage
+from yokeProject.yokeApp.views import HomePage
+
+app_name = "yokeApp"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', TaskerHomePage.as_view()),
-    path('home_tasker', TaskerHomePage.as_view()),
-    path('home_worker', WorkerHomePage.as_view()),
-    # path('login', LoginPage.as_view()),
-    path('create_task', login_required(CreateTaskPage.as_view())),
-    path('create_account', CreateAccountPage.as_view()),
+    path('', HomePage.as_view()),
+    path('home', HomePage.as_view(), name="home"),
+    path('home/<str:home_type>/', login_required(HomePage.as_view())),
+    path('create_task', login_required(CreateTaskPage.as_view()), name="CreateTaskPage"),
+    path('create_account', CreateAccountPage.as_view(), name="CreateAccountPage"),
     path('worker_view_task', WorkerTaskViewPage.as_view()),
 ]
