@@ -11,12 +11,6 @@ from django.db import IntegrityError
 from rest_framework.authtoken.models import Token
 import json
 from django.http import HttpResponseNotFound
-
-
-class TaskerHomePage(View):
-
-    def get(self, request, *args, **kwargs):
-        return render(request, 'yokeapp/home_tasker.html', {})
     
 class HomePage(View):
 
@@ -43,16 +37,20 @@ class HomePage(View):
                                                      "user_accepted_tasks": user_accepted_tasks})
 
 
-class WorkerHomePage(View):
-
-    def get(self, request, *args, **kwargs):
-        return render(request, 'yokeapp/home_worker.html', {})
-
-
 class LoginPage(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'yokeapp/login.html', {})
+
+class ExploreTasksPage(View):
+
+    def get(self, request, page_number=1, *args, **kwargs):
+
+        unassigned_tasks = Task.objects.filter(queued_by_user_id=None)
+        print("Found all unnassigned tasks")
+        for x in unassigned_tasks:
+            print("Task: {}, assigned to user: {}".format(x.task_title, x.queued_by_user_id))
+        return render(request, 'yokeapp/explore_tasks.html', {"unassigned_tasks": unassigned_tasks})
 
 
 class CreateTaskPage(View):
@@ -120,9 +118,3 @@ class CreateAccountPage(View):
 
         response = redirect('/accounts/login')
         return response
-
-
-class WorkerTaskViewPage(View):
-
-    def get(self, request, *args, **kwargs):
-        return render(request, 'yokeapp/worker_view_task.html', {})

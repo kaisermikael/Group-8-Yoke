@@ -16,13 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
-from yokeProject.yokeApp.views import WorkerHomePage
 from yokeProject.yokeApp.views import LoginPage
 from yokeProject.yokeApp.views import CreateTaskPage
 from yokeProject.yokeApp.views import CreateAccountPage
-from yokeProject.yokeApp.views import WorkerTaskViewPage
-from yokeProject.yokeApp.views import TaskerHomePage
 from yokeProject.yokeApp.views import HomePage
+from yokeProject.yokeApp.views import ExploreTasksPage
 
 app_name = "yokeApp"
 
@@ -32,7 +30,8 @@ urlpatterns = [
     path('', HomePage.as_view()),
     path('home', HomePage.as_view(), name="home"),
     path('home/<str:home_type>/', login_required(HomePage.as_view())),
+    path('explore_tasks', ExploreTasksPage.as_view(), name="ExploreTasksPage"),
+    path('explore_tasks/<int:page_number>/', ExploreTasksPage.as_view(), name="ExploreTasksPage"),
     path('create_task', login_required(CreateTaskPage.as_view()), name="CreateTaskPage"),
     path('create_account', CreateAccountPage.as_view(), name="CreateAccountPage"),
-    path('worker_view_task', WorkerTaskViewPage.as_view()),
 ]
