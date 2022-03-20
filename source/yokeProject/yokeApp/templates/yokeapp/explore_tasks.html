@@ -18,8 +18,8 @@
     <title>Explore Tasks</title>
 </head>
 <body>
-    <!-- nav bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(1, 1, 129);">
+        <!-- nav bar -->
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: rgb(1, 1, 129);">
 
             <div class="d-flex justify-content-center flex-row">
                  <a href="/" class=""><img src="{% static "yoke-transparent.png" %}" alt="My image" style="width: 150px;height: 60px"></a>
@@ -28,6 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
                     <a href="/home/posted/" class="nav-item nav-link">My Posted Tasks</a>
+                    <a href="/explore_tasks" class="nav-item nav-link">Explore tasks</a>
                     <a href="/home/accepted/" class="nav-item nav-link">My Accepted Tasks</a>
                 </div>
             </div>
@@ -52,7 +53,7 @@
               <h6 class="card-subtitle mb-2 text-muted">Pay: ${{ task.task_cost }}</h6>
               <h6 class="card-subtitle mb-2  py-3 d-flex justify-content-start">Description: </h6>
             <p class="card-text d-flex justify-content-center">{{ task.task_description }}</p>
-            <button type="button" class="btn btn-primary" style="padding: 10">Add to my queue</button>
+            <a href="/queue_task/{{ task.task_id }}/"><button type="button" class="btn btn-primary" style="padding: 10">Add to my queue</button></a>
           </div>
         </div>
         {% endfor %}
