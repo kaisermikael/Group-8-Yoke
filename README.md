@@ -18,7 +18,7 @@ Github
 ### Backend
 On the backend we will use the Django framework and built in webserver
 ### Frontend 
-For the frontend we will use the vue.js framework which will be easy to integrate with our Django backend
+For the frontend we will use the Bootstrap framework which will be easy to integrate with our Django backend
 ### Database
 We will be using either the db.sqlite database that comes with the Django framework or a SQL server for database management
 # Tool Stack Setup Procedure
