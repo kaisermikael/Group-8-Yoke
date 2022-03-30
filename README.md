@@ -20,7 +20,7 @@ On the backend we will use the Django framework and built in webserver
 ### Frontend 
 For the frontend we will use the Bootstrap framework which will be easy to integrate with our Django backend
 ### Database
-We will be using either the db.sqlite database that comes with the Django framework or a SQL server for database management
+We will be using the db.sqlite database that comes with the Django framework
 # Tool Stack Setup Procedure
 The current working version of Yoke is only a prototype. Requirements to run the project locally:
 * python installed on your system
