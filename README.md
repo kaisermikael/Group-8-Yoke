@@ -23,12 +23,13 @@ For the frontend we will use the Bootstrap framework which will be easy to integ
 We will be using the db.sqlite database that comes with the Django framework
 # Tool Stack Setup Procedure
 The current working version of Yoke is only a prototype. Requirements to run the project locally:
-* python installed on your system
-* the django and djangorestframework python packages
+* ensure python is installed locally on your system
+* clone the project repo
+* install the required dependancies via the requiremnts.txt file and the following command: "pip install -r requirements.txt"
 
-To setup the tool stack simply install the requirements, clone the repo, navigate to the 'source' folder, and run "python3 manage.py runserver".
 # Build Instructions
-See tool stack setup
+- with the dependancies installed as described above, navigate to the folder containing the "manage.py" file
+- once there run the following commands: "python3 manage.py makemigrations yokeApp", "python3 manage.py migrate", and finally "python3 manage.py runserver"
 # Unit Testing Instructions
 Currently we do not have any unit tests as we are still in the early stages of development.
 # System testing instructions
