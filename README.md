@@ -36,4 +36,4 @@ The current working version of Yoke is only a prototype. Requirements to run the
 # Unit Testing Instructions
 Currently we do not have any unit tests as we are still in the early stages of development.
 # System testing instructions
-N/A. We will create system testing instructions once we have a fully working prototype.
+For additional testing information please see the YOKE testing document in the docs folder
