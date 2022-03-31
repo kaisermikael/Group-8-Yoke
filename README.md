@@ -34,6 +34,6 @@ The current working version of Yoke is only a prototype. Requirements to run the
 - ```python3 manage.py migrate```
 - ```python3 manage.py runserver```
 # Unit Testing Instructions
-Currently we do not have any unit tests as we are still in the early stages of development.
+For additional testing information please see the YOKE testing document in the docs folder
 # System testing instructions
 For additional testing information please see the YOKE testing document in the docs folder
