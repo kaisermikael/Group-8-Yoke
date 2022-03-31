@@ -46,49 +46,67 @@
     <div class="container">
         <h1>Create a Task</h1>
         <form action="create_task" method="post" role="form" class="form-horizontal">{% csrf_token %}
-            <div class="mb-3">
-                <label class="form-label" for="inputDueDate">Task title</label>
-                <input name="taskTitle" type="text" class="form-control" id="taskTitle" placeholder="my task" required>
+            <div>    
+                <h4 style="text-decoration: underline">User Contact Info</h4>
+                <div class="mb-3">
+                    <label class="form-label" for="inputAddress">Task Address</label>
+                    <input name="taskAddress" type="text" class="form-control" id="taskAddress" placeholder="Enter the address of the task here" required>
+                </div>
+                <div>
+                    <label class="form-label" for="inputPhoneNumber">Phone Number</label>
+                    <input name="taskPhone" type="text" class="form-control" id="taskPhone" placeholder="(XXX)-XXX-XXXX" required>
+                </div>
+                <div>
+                    <label class="form-label" for="inputEmailAddress">Email Address</label>
+                    <input name="taskEmail" type="text" class="form-control" id="taskEmail" placeholder="(optional) Contact Email Address">
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label" for="inputDescription">Task description</label>
-                <textarea name="taskDescription" class="form-control" id="taskDescription" placeholder="mow the lawn" rows="3" required></textarea>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="inputPrice">Task price in dollars</label>
-                <input name="taskPrice" type="number" step="0.01" class="form-control" id="taskPrice" placeholder="1" required>
-            </div>
-            <div class="form-group"> <!-- Date input -->
-                <script>
-                    $(document).ready(function(){
-                      var date_input=$('input[name="taskDueDate"]'); //our date input has the name "date"
-                      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-                      var options={
-                        format: 'yyyy-mm-dd',
-                        container: container,
-                        todayHighlight: true,
-                        autoclose: true,
-                      };
-                      date_input.datepicker(options);
-                    })
-                </script>
-                <label class="control-label" for="date">Date</label>
-                <input class="form-control" id="date" name="taskDueDate" placeholder="MM/DD/YYY" type="text" required/>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="inputDifficulty">Estimated difficulty (1-10)</label>
-                <select class="form-select" id="selectDifficulty" name="taskDifficulty" required>
-                    <option value=1>1</option>
-                    <option value=2>2</option>
-                    <option value=3>3</option>
-                    <option value=4>4</option>
-                    <option value=5>5</option>
-                    <option value=6>6</option>
-                    <option value=7>7</option>
-                    <option value=8>8</option>
-                    <option value=9>9</option>
-                    <option value=10>10</option>
-                </select>
+            <div>
+                <h4 style="text-decoration: underline">Task Info</h4>
+                <div class="mb-3">
+                    <label class="form-label" for="inputDueDate">Task title</label>
+                    <input name="taskTitle" type="text" class="form-control" id="taskTitle" placeholder="My New Task" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="inputDescription">Task description</label>
+                    <textarea name="taskDescription" class="form-control" id="taskDescription" placeholder="Mow the lawn, trim the hedges..." rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="inputPrice">Task price in dollars</label>
+                    <input name="taskPrice" type="number" step="0.01" class="form-control" id="taskPrice" placeholder="10" required>
+                </div>
+                <div class="form-group"> <!-- Date input -->
+                    <script>
+                        $(document).ready(function(){
+                        var date_input=$('input[name="taskDueDate"]'); //our date input has the name "date"
+                        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                        var options={
+                            format: 'yyyy-mm-dd',
+                            container: container,
+                            todayHighlight: true,
+                            autoclose: true,
+                        };
+                        date_input.datepicker(options);
+                        })
+                    </script>
+                    <label class="control-label" for="date">Date</label>
+                    <input class="form-control" id="date" name="taskDueDate" placeholder="MM/DD/YYY" type="text" required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="inputDifficulty">Estimated difficulty (1-10)</label>
+                    <select class="form-select" id="selectDifficulty" name="taskDifficulty" required>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=10>10</option>
+                    </select>
+                </div>
             </div>
             <!-- <button type="submit" class="btn btn-primary">Create Task</button> -->
             <button type="submit" class="btn btn-primary">Create Task</button>

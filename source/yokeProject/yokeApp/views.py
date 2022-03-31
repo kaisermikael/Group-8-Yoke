@@ -73,6 +73,9 @@ class CreateTaskPage(View):
         task = Task.objects.create(created_by_user_id=request.user.id,
                                    task_title=task_info["taskTitle"],
                                    task_description=task_info["taskDescription"],
+                                   task_address=task_info["taskAddress"],
+                                   task_phone=task_info["taskPhone"],
+                                   task_email=task_info["taskEmail"],
                                    task_cost=float(task_info["taskPrice"]),
                                    task_due_date=task_info["taskDueDate"],
                                    estimated_difficulty=task_info["taskDifficulty"])
