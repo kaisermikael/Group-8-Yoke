@@ -49,6 +49,21 @@ class LoginPage(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'yokeapp/login.html', {})
 
+# this view corresponds to the 'account_info' endpoint
+class AccountInfo(View):
+
+    def get(self, request, *args, **kwargs):
+        user_id = request.user.id
+        user_info = (User.objects.filter(id=user_id))[0]
+        first_name = user_info.first_name
+        last_name = user_info.last_name
+        username = user_info.username
+        account_balance = 0
+        return render(request, 'yokeapp/account_details.html', {"first_name": first_name,
+                                                                "last_name": last_name,
+                                                                "username": username,
+                                                                "account_balance": account_balance})
+
 # this view corresponds to the 'explore_tasks' endpoint and returns a page with all currently unassigned tasks
 class ExploreTasksPage(View):
 
