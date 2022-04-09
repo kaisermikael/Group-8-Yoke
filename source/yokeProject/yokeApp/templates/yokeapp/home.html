@@ -48,8 +48,30 @@
     </nav>
 
     {% if default == True %}
-    <div class="d-flex justify-content-center flex-row">
-        <h1>The default homepage!</h1>
+    <div class="container-lg">
+        <div class="row">
+            <div class="col bg-light py-3 my-3">
+                <h1 style=font-size:800% class="text-center">Welcome to Yoke!</h1>
+                <h2>Yoke is a service that is committed to finding locally-sourced labor to accomplish those tedious tasks that always get in the way. Whether you need your lawn mowed or sidewalk cleared, Yoke is here to help you find the help you need!</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-white" style="background-color: rgb(1, 1, 129)";>
+                <h2>Yoke helped me with my lawn</h2>
+                <p>-Grandpa Jim</p>
+            </div>
+            <div class="col text-white" style="background-color: rgb(1, 1, 129);">
+                <h2>I don't have to shovel my snow anymore</h2>
+                <p>-Grandma Jane</p>
+            </div>
+            <div class="col text-white" style="background-color: rgb(1, 1, 129);">
+                <h2>What a great service</h2>
+                <p>-Your mom</p>
+            </div>         
+        </div>
+
+
     </div>
     {% endif %}
 
