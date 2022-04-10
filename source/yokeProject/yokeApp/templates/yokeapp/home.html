@@ -92,8 +92,16 @@
                                     <p>{{ task.task_due_date }}</p>
                                      <h6 style="text-decoration: underline;">Pay: </h6>
                                     <p>${{ task.task_cost }}</p>
-                                    <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
-                                    <a href="/delete_task/{{ task.task_id }}/"><button type="button" class="btn btn-primary" style="align-items: left;">Delete task</button></a>
+                                    {% if task.queued_by_username != None %}
+                                    <h6 style="text-decoration: underline;">Queued by user: </h6>
+                                    <p>{{ task.queued_by_username }}</p>
+                                    {% endif %}
+                                    <div style="padding: 5px">
+                                        <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
+                                    </div>
+                                    <div style="padding: 5px">
+                                        <a href="/delete_task/{{ task.task_id }}/"><button type="button" class="btn btn-primary" style="align-items: left;">Delete Task / Pay Worker</button></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +126,13 @@
                                     <p>{{ task.task_due_date }}</p>
                                     <h6 style="text-decoration: underline;">Pay: </h6>
                                     <p>${{ task.task_cost }}</p>
-                                    <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
+                                    {% if task.queued_by_username != None %}
+                                    <h6 style="text-decoration: underline;">Queued by user: </h6>
+                                    <p>{{ task.queued_by_username }}</p>
+                                    {% endif %}
+                                    <div style="padding: 5px">
+                                        <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +175,13 @@
                                     <p>{{ task.task_due_date }}</p>
                                      <h6 style="text-decoration: underline;">Pay: </h6>
                                     <p>${{ task.task_cost }}</p>
-                                    <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
+                                    {% if task.queued_by_username != None %}
+                                    <h6 style="text-decoration: underline;">Queued by user: </h6>
+                                    <p>{{ task.queued_by_username }}</p>
+                                    {% endif %}
+                                    <div style="padding: 5px">
+                                        <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -192,9 +212,19 @@
                                     <p>{{ task.task_due_date }}</p>
                                      <h6 style="text-decoration: underline;">Pay: </h6>
                                     <p>${{ task.task_cost }}</p>
-                                    <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
-                                    <a href="/dequeue_task/{{ task.task_id }}/"><button type="button" class="btn btn-primary" style="align-items: right;">Dequeue</button></a>
-                                    <a href="/complete_task/{{ task.task_id }}/"><button type="button" class="btn btn-primary" style="align-items: left;">Mark Complete</button></a>
+                                    {% if task.queued_by_username != None %}
+                                    <h6 style="text-decoration: underline;">Queued by user: </h6>
+                                    <p>{{ task.queued_by_username }}</p>
+                                    {% endif %}
+                                    <div style="padding: 5px">
+                                        <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
+                                    </div>
+                                    <div style="padding: 5px">
+                                        <a href="/dequeue_task/{{ task.task_id }}/"><button type="button" class="btn btn-primary" style="align-items: right;">Dequeue</button></a>
+                                    </div>
+                                    <div style="padding: 5px">
+                                        <a href="/complete_task/{{ task.task_id }}/"><button type="button" class="btn btn-primary" style="align-items: left;">Mark Complete</button></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
