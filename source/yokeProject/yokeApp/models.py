@@ -7,7 +7,7 @@ from datetime import datetime
 # this is the user_data table model with information about users that corresponds to a single user account
 class UserData(models.Model):
     # here we generate a unique UUID for a user
-    user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user_id = models.IntegerField(null=True, blank=False)
     # user_type is an int that tells us whether they are a task poster or task worker.
     # task_poster = 0
     # task_worker = 1
@@ -20,7 +20,7 @@ class UserData(models.Model):
     password = models.CharField(max_length=64)
     account_creation_date = models.DateTimeField(default=datetime.now, blank=True)
     account_deletion_date = models.DateTimeField(default=None, blank=True, null=True)
-    account_balance = models.IntegerField(default=0)
+    account_balance = models.DecimalField(default=0, decimal_places=2, max_digits=30)
     user_rating = models.FloatField(null=True, blank=True, default=None)
 
 
@@ -29,14 +29,16 @@ class Task(models.Model):
     # here we generate a unique UUID for a task
     task_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_by_user_id = models.IntegerField(null=True, blank=False)
+    created_by_username = models.CharField(max_length=300)
     deleted_by_user_id = models.IntegerField(blank=True, null=True)
     queued_by_user_id = models.IntegerField(blank=True, null=True)
+    queued_by_username = models.CharField(max_length=300)
     completed_by_user_id = models.IntegerField(blank=True, null=True)
     task_title = models.CharField(max_length=64, default="default task title")
     task_description = models.CharField(max_length=300)
     task_creation_time = models.DateTimeField(default=datetime.now, blank=True)
     task_deletion_time = models.DateTimeField(blank=True, null=True)
-    task_cost = models.FloatField(default=0)
+    task_cost = models.DecimalField(default=0, decimal_places=2, max_digits=30)
     # Task Progress: 0 = incomplete, 1 = complete.
     task_progress = models.IntegerField(default=0)
     task_due_date = models.DateField()
