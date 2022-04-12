@@ -11,6 +11,7 @@ from django.db import IntegrityError
 from rest_framework.authtoken.models import Token
 import json
 from django.http import HttpResponseNotFound
+from decimal import Decimal
 
 # this view corresponds to the 'home/<str:home_type>/' and 'home' endpoints, it returns a dynamic homepage
 #   displaying posted, completed, queued, etc. tasks specific to a given user
@@ -49,6 +50,23 @@ class LoginPage(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'yokeapp/login.html', {})
 
+# this view corresponds to the 'account_info' endpoint
+class AccountInfo(View):
+
+    def get(self, request, *args, **kwargs):
+        user_id = request.user.id
+        user_info = (User.objects.filter(id=user_id))[0]
+        user_data = (UserData.objects.filter(user_id=user_id))[0]
+        first_name = user_info.first_name
+        last_name = user_info.last_name
+        username = user_info.username
+        account_balance = user_data.account_balance
+        decimal_amount = ((str(account_balance)).split('.'))[1]
+        return render(request, 'yokeapp/account_details.html', {"first_name": first_name,
+                                                                "last_name": last_name,
+                                                                "username": username,
+                                                                "account_balance": f'{account_balance:,}'})
+
 # this view corresponds to the 'explore_tasks' endpoint and returns a page with all currently unassigned tasks
 class ExploreTasksPage(View):
 
@@ -58,6 +76,20 @@ class ExploreTasksPage(View):
         unassigned_tasks = Task.objects.filter(queued_by_user_id=None, completed_by_user_id=None)
 
         return render(request, 'yokeapp/explore_tasks.html', {"unassigned_tasks": unassigned_tasks})
+
+class AddFunds(View):
+
+    def post(self, request, *args, **kwargs):
+        # cast QueryDict from form to python dict
+        funds_info = request.POST.dict()
+        user_id = request.user.id
+        user_data = UserData.objects.filter(user_id=user_id)[0]
+        print("found user_data: {}".format(user_data))
+        amount = Decimal(funds_info["fundsAmount"])
+        user_data.account_balance = user_data.account_balance + amount
+        user_data.save()
+
+        return redirect('/account_info')
 
 
 # this view corresponds to the 'create_task' endpoint and contains logic for creating tasks
@@ -69,8 +101,10 @@ class CreateTaskPage(View):
     def post(self, request, *args, **kwargs):
         # cast QueryDict from form to python dict
         task_info = request.POST.dict()
+        created_by_username = UserData.objects.filter(user_id=request.user.id)[0].username
         # create new task in database
         task = Task.objects.create(created_by_user_id=request.user.id,
+                                   created_by_username=created_by_username,
                                    task_title=task_info["taskTitle"],
                                    task_description=task_info["taskDescription"],
                                    task_address=task_info["taskAddress"],
@@ -97,6 +131,8 @@ class QueueTask(View):
             # queue it for that user
             if target_task.queued_by_user_id is None:
                 target_task.queued_by_user_id = request.user.id
+                queued_by_username = UserData.objects.filter(user_id=request.user.id)[0].username
+                target_task.queued_by_username = queued_by_username
                 target_task.save()
 
         # send user back to explore page
@@ -115,6 +151,7 @@ class DeQueueTask(View):
             target_task = (Task.objects.filter(task_id=task_id))[0]
             # dequeue it for all users
             target_task.queued_by_user_id = None
+            target_task.queued_by_username = None
             target_task.save()
 
         # send user back to accepted tasks homepage
@@ -131,6 +168,19 @@ class DeleteTask(View):
         else:
             # get task to delete
             target_task = (Task.objects.filter(task_id=task_id))[0]
+            # find out how much this task was worth
+            task_cost = target_task.task_cost
+            # get the ids of the user paying and user to be paid
+            user_id_to_pay = target_task.queued_by_user_id
+            paying_user_id = request.user.id
+            # get the user objects from ids
+            owed_user = UserData.objects.filter(user_id=user_id_to_pay)[0]
+            paying_user = UserData.objects.filter(user_id=paying_user_id)[0]
+            # make the transaction
+            paying_user.account_balance -= task_cost
+            paying_user.save()
+            owed_user.account_balance += task_cost
+            owed_user.save()
             target_task.delete()
 
         # send user back to posted tasks homepage
@@ -149,8 +199,6 @@ class CompleteTask(View):
             target_task = (Task.objects.filter(task_id=task_id))[0]
             # set its progress to complete
             target_task.task_progress = 1
-            # remove it from any users queue
-            target_task.queued_by_user_id = None
             # set the completed by user id
             target_task.completed_by_user_id = request.user.id
             # save those changes
@@ -199,6 +247,7 @@ class CreateAccountPage(View):
 
         # create a user_data model object / entry in database
         user_data = UserData.objects.create(username=(user_info["username"]),
+                                            user_id=user.id,
                                             first_name=user_info["first_name"],
                                             last_name=user_info["first_name"],
                                             email=user_info["email"])

@@ -31,22 +31,26 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
+                    <a href="/account_info" class="nav-item nav-link">Account Info</a>
                     <a href="/accounts/login" class="nav-item nav-link">Login</a>
-                    <a href="/create_account" class="nav-item nav-link">Create Account</a>
                 </div>
             </div>
     </nav>
-    <div class="container" style="display: flex; flex-direction: column; align-items: center;">
-            <h1 style="padding: 25px;">Login to your Yoke Account</h1>
+       <div class="d-flex justify-content-center flex-col">
+           <div style="padding: 30px">
+               <div class="card shadow mb-2 bg-white rounded" style="min-width: 700px;">
+            <h1 class="d-flex justify-content-center" style="padding: 25px;">Login to your Yoke Account</h1>
             <form method="post" style="display: flex;flex-direction: column;align-items: center;">{% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
-            <div class="container" style="display: flex; flex-direction: column; align-items: center; padding: 25px;">
+            <div class="display: flex" style="display: flex; flex-direction: column; align-items: center; padding: 25px;">
                 <h8 style="padding: 10px;">Don't have an account? Create one!</h8>
                 <a class="btn btn-primary" href="/create_account" role="button">Create account</a>
             </div>
-    </div>
+            </div>
+           </div>
+       </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
