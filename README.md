@@ -32,6 +32,7 @@ The current working version of Yoke is only a prototype. Requirements to run the
 - once there run the following commands:
 - ```python3 manage.py makemigrations yokeApp```
 - ```python3 manage.py migrate```
+- ```python3 manage.py seed```
 - ```python3 manage.py runserver```
 # Unit Testing Instructions
 For additional testing information please see the YOKE testing document in the docs folder
