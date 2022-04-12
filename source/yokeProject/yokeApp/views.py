@@ -44,6 +44,12 @@ class HomePage(View):
                                                      "user_accepted_tasks": user_accepted_tasks,
                                                      "user_completed_tasks": user_completed_tasks})
 
+# this view is our about page and shouldn't mess with anything else
+class AboutPage(View):
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'yokeapp/about.html', {})
+
 # this view corresponds to the 'login' endpoint
 class LoginPage(View):
 
