@@ -45,11 +45,13 @@ class HomePage(View):
                                                      "user_accepted_tasks": user_accepted_tasks,
                                                      "user_completed_tasks": user_completed_tasks})
 
+
 # this view corresponds to the 'login' endpoint
 class LoginPage(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'yokeapp/login.html', {})
+
 
 # this view corresponds to the 'account_info' endpoint
 class AccountInfo(View):
@@ -62,11 +64,15 @@ class AccountInfo(View):
         last_name = user_info.last_name
         username = user_info.username
         account_balance = user_data.account_balance
+        is_admin_user = False
+        if user_data.username == "admin":
+            is_admin_user = True
         decimal_amount = ((str(account_balance)).split('.'))[1]
         return render(request, 'yokeapp/account_details.html', {"first_name": first_name,
                                                                 "last_name": last_name,
                                                                 "username": username,
-                                                                "account_balance": f'{account_balance:,}'})
+                                                                "account_balance": f'{account_balance:,}',
+                                                                "is_admin_user": is_admin_user})
 
 # this view corresponds to the 'explore_tasks' endpoint and returns a page with all currently unassigned tasks
 class ExploreTasksPage(View):
