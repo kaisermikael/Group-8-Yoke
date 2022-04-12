@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
 from yokeProject.yokeApp.views import DeleteTask, LoginPage, CreateTaskPage, CompleteTask, QueueTask, \
-    ExploreTasksPage, DeQueueTask, HomePage, CreateAccountPage, AccountInfo, AddFunds
+    ExploreTasksPage, DeQueueTask, HomePage, CreateAccountPage, AccountInfo, AddFunds, AboutPage
 
 app_name = "yokeApp"
 
@@ -37,4 +37,5 @@ urlpatterns = [
     path('delete_task/<str:task_id>/', login_required(DeleteTask.as_view()), name="DeleteTask"),
     path('complete_task/<str:task_id>/', login_required(CompleteTask.as_view()), name="CompleteTask"),
     path('create_account', CreateAccountPage.as_view(), name="CreateAccountPage"),
+    path('about', AboutPage.as_view(), name="AboutPage"),
 ]
