@@ -86,16 +86,20 @@
                                 <div class="col">
                                     <h6 style="text-decoration: underline;">Title: </h6>
                                     <p>{{ task.task_title }}</p>
+                                     <h6 style="text-decoration: underline;">Tasker Address: </h6>
+                                    <p>{{ task.task_address }}</p>
+                                    <h6 style="text-decoration: underline;">Tasker Phone: </h6>
+                                    <p>{{ task.task_phone }}</p>
+                                    <h6 style="text-decoration: underline;">Tasker Email: </h6>
+                                    <p>{{ task.task_email }}</p>
                                     <h6 style="text-decoration: underline;">Description: </h6>
                                     <p>{{ task.task_description }}</p>
                                      <h6 style="text-decoration: underline;">Due date: </h6>
                                     <p>{{ task.task_due_date }}</p>
                                      <h6 style="text-decoration: underline;">Pay: </h6>
                                     <p>${{ task.task_cost }}</p>
-                                    {% if task.queued_by_username != None %}
-                                    <h6 style="text-decoration: underline;">Queued by user: </h6>
-                                    <p>{{ task.queued_by_username }}</p>
-                                    {% endif %}
+                                    <h6 style="text-decoration: underline;">Completed by user: </h6>
+                                    <p>{{ task.completed_by_username }}</p>
                                     <div style="padding: 5px">
                                         <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
                                     </div>
@@ -120,6 +124,12 @@
                                 <div class="col">
                                     <h6 style="text-decoration: underline;">Title: </h6>
                                     <p>{{ task.task_title }}</p>
+                                     <h6 style="text-decoration: underline;">Tasker Address: </h6>
+                                    <p>{{ task.task_address }}</p>
+                                    <h6 style="text-decoration: underline;">Tasker Phone: </h6>
+                                    <p>{{ task.task_phone }}</p>
+                                    <h6 style="text-decoration: underline;">Tasker Email: </h6>
+                                    <p>{{ task.task_email }}</p>
                                     <h6 style="text-decoration: underline;">Description: </h6>
                                     <p>{{ task.task_description }}</p>
                                      <h6 style="text-decoration: underline;">Due date: </h6>
@@ -169,16 +179,20 @@
                                 <div class="col">
                                     <h6 style="text-decoration: underline;">Title: </h6>
                                     <p>{{ task.task_title }}</p>
+                                     <h6 style="text-decoration: underline;">Tasker Address: </h6>
+                                    <p>{{ task.task_address }}</p>
+                                    <h6 style="text-decoration: underline;">Tasker Phone: </h6>
+                                    <p>{{ task.task_phone }}</p>
+                                    <h6 style="text-decoration: underline;">Tasker Email: </h6>
+                                    <p>{{ task.task_email }}</p>
                                     <h6 style="text-decoration: underline;">Description: </h6>
                                     <p>{{ task.task_description }}</p>
                                      <h6 style="text-decoration: underline;">Due date: </h6>
                                     <p>{{ task.task_due_date }}</p>
                                      <h6 style="text-decoration: underline;">Pay: </h6>
                                     <p>${{ task.task_cost }}</p>
-                                    {% if task.queued_by_username != None %}
-                                    <h6 style="text-decoration: underline;">Queued by user: </h6>
-                                    <p>{{ task.queued_by_username }}</p>
-                                    {% endif %}
+                                    <h6 style="text-decoration: underline;">Completed by user: </h6>
+                                    <p>{{ task.completed_by_username }}</p>
                                     <div style="padding: 5px">
                                         <button type="button" class="btn btn-primary" style="align-items: left;">View</button>
                                     </div>

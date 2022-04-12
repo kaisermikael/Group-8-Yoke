@@ -119,7 +119,7 @@ class CreateTaskPage(View):
 # this view corresponds to the 'queue_task/<str:task_id>/' endpoint and contains logic for queueing tasks
 class QueueTask(View):
 
-    def get(self, request, task_id=None, *args, **kwargs):
+    def get(self, request, task_id, *args, **kwargs):
 
         # ensure we have a task id
         if task_id is None:
@@ -141,7 +141,7 @@ class QueueTask(View):
 # this view corresponds to the 'dequeue_task/<str:task_id>/' endpoint and contains logic for dequeueing tasks
 class DeQueueTask(View):
 
-    def get(self, request, task_id=None, *args, **kwargs):
+    def get(self, request, task_id, *args, **kwargs):
 
         # ensure we have a task id
         if task_id is None:
@@ -160,7 +160,7 @@ class DeQueueTask(View):
 # this view corresponds to the 'delete_task/<str:task_id>/' endpoint and contains logic for marking tasks as deleted
 class DeleteTask(View):
 
-    def get(self, request, task_id=None, *args, **kwargs):
+    def get(self, request, task_id, *args, **kwargs):
 
         # ensure we have a task id
         if task_id is None:
@@ -171,8 +171,8 @@ class DeleteTask(View):
             # find out how much this task was worth
             task_cost = target_task.task_cost
             # get the ids of the user paying and user to be paid
-            user_id_to_pay = target_task.queued_by_user_id
-            paying_user_id = request.user.id
+            user_id_to_pay = target_task.completed_by_user_id
+            paying_user_id = target_task.created_by_user_id
             # get the user objects from ids
             owed_user = UserData.objects.filter(user_id=user_id_to_pay)[0]
             paying_user = UserData.objects.filter(user_id=paying_user_id)[0]
@@ -195,12 +195,18 @@ class CompleteTask(View):
         if task_id is None:
             pass
         else:
+            # get the data for the request user
+            userData = UserData.objects.filter(user_id=request.user.id)[0]
             # get the task to complete
             target_task = (Task.objects.filter(task_id=task_id))[0]
             # set its progress to complete
             target_task.task_progress = 1
             # set the completed by user id
-            target_task.completed_by_user_id = request.user.id
+            target_task.completed_by_user_id = userData.user_id
+            target_task.completed_by_username = userData.username
+            # dequeue it for all users
+            target_task.queued_by_user_id = None
+            target_task.queued_by_username = None
             # save those changes
             target_task.save()
 

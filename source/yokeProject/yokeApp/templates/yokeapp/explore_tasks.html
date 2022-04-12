@@ -52,6 +52,9 @@
         <div class="card shadow mb-2 bg-white rounded" style="width: 600px">
           <div class="card-body d-flex flex-column justify-content-center">
               <h5 class="card-title mb-2 d-flex justify-content-center">Title: {{ task.task_title }}</h5>
+               <h6 style="card-text d-flex justify-content-center">Tasker Address: {{ task.task_address }}</h6>
+                <h6 style="card-text d-flex justify-content-center">Tasker Phone: {{ task.task_phone }}</h6>
+                <h6 style="card-text d-flex justify-content-center">Tasker Email: {{ task.task_email }}</h6>
               <h6 class="card-title mb-2 d-flex justify-content-start">Due: {{ task.task_due_date }}</h6>
               <h6 class="card-subtitle mb-2 text-muted">Pay: ${{ task.task_cost }}</h6>
               <h6 class="card-subtitle mb-2  py-3 d-flex justify-content-start">Description: </h6>
