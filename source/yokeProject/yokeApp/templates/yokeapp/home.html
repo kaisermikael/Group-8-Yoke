@@ -22,7 +22,7 @@
   </head>
   <body>
         <!-- nav bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(1, 1, 129);">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #00263A;">
         <div class="container-fluid">
             <div class="d-flex justify-content-center flex-row">
                  <a href="/" class=""><img src="{% static "yoke-transparent.png" %}" alt="My image" style="width: 150px;height: 60px"></a>
@@ -48,27 +48,76 @@
     </nav>
 
     {% if default == True %}
-    <div class="d-flex justify-content-center flex-row">
-            <div class="hero-unit">
-      <h1>The default homepage!</h1>
-      <p>our default tagline</p>
-      <p>
-        <a class="btn btn-primary btn-large">
-          Learn more
-        </a>
-      </p>
-    </div>
+    <div class="container-lg">
+
+        <div class="row">
+            <div class="col bg-light py-3 my-3">
+                <h1 style=font-size:600% class="text-center">Welcome to Yoke!</h1>
+                <h2>Yoke is a service that is committed to finding locally-sourced labor to accomplish those tedious tasks that always get in the way. Whether you need your lawn mowed or sidewalk cleared, Yoke is here to help you find the help you need!</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-white" style="background-color: #00263A;";>
+                <h2>Yoke helped me with my lawn</h2>
+                <p>-Grandpa Jim</p>
+            </div>
+            <div class="col text-white" style="background-color: #00263A;">
+                <h2>I don't have to shovel my snow anymore</h2>
+                <p>-Grandma Jane</p>
+            </div>
+            <div class="col text-white" style="background-color: #00263A;">
+                <h2>What a great service</h2>
+                <p>-Your mom</p>
+            </div>         
+        </div>
+
+        <div class="row">
+            <div class="col bg-light py-3 my-3">
+                <!--royalty free images sourced from pexel.com-->
+                <img src="{% static "pexel.jpg" %}" class="img-fluid" alt="shovel">
+            </div>
+            <div class="col bg-light py-3 my-3">
+                <img src="{% static "pexel1.jpg" %}" class="img-fluid" alt="mower_q">
+            </div>      
+        </div>
+
+        <div class="row">
+            <div class="col bg-light py-3 my-3">
+                <h1 class="text-center">Create an account with us today!</h1>
+                <div class="text-center">
+                    <a href="/create_account"><button type="submit" class="btn btn-primary">Create Account</button></a>
+                </div>                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col bg-light py-3 my-3">
+                <!--royalty free images sourced from pexel.com-->
+                <img src="{% static "pexel2.jpg" %}" class="img-fluid" alt="cats">
+            </div>    
+        </div>
+
+        <div class="row">
+            <div class="col bg-light py-3 my-3">
+                <div class="text-center">
+                    <a href="/create_account"><button type="submit" class="btn btn-primary">About Yoke</button></a>
+                </div>
+                
+            </div>
+        </div>
+    
     </div>
     {% endif %}
 
     {% if posted == True %}
     <div class="d-flex justify-content-center flex-row">
-        <h1>The posted tasks homepage!</h1>
+        <img src="{% static "widepexel.jpg" %}" class="img-fluid" alt="wide pic">
     </div>
     <div class="container-lg">
         <div class="row">
             <div id="post_task1" class="col-xl-4">
-                <div class="container text-white border py-3 my-3" style="background-color:  rgb(1, 1, 129);">
+                <div class="container text-white border py-3 my-3" style="background-color:  #00263A;">
                     <div class="d-flex align-items-center flex-column">
                         <h2>Post a new task</h2>
                         <a href="{% url 'CreateTaskPage' %}"><button type="button" class="btn btn-primary">Create</button></a>
@@ -76,7 +125,7 @@
                 </div>
             </div>
             <div class="col-xl-4">
-                <div class="container text-white border py-3 my-3 overflow-auto" style="background-color:  rgb(1, 1, 129);height: 900px;">
+                <div class="container text-white border py-3 my-3 overflow-auto" style="background-color:  #00263A;height: 900px;">
                     <h2>Completed posted tasks</h2>
                     {% for task in completed_user_posted_tasks %}
                     <div class="card bg-white rounded shadow text-black border py-2 my-2" style="background-color:  rgb(255, 255, 255);">
@@ -114,7 +163,7 @@
                 </div>
             </div>
             <div class="col-xl-4">
-                <div class="container text-white border py-3 my-3 overflow-auto" style="background-color:  rgb(1, 1, 129);height: 900px;">
+                <div class="container text-white border py-3 my-3 overflow-auto" style="background-color:  #00263A;height: 900px;">
                     <h2>Currently available tasks</h2>
                     {% for task in incomplete_user_posted_tasks %}
                     <div class="card bg-white rounded shadow text-black border py-2 my-2" style="background-color:  rgb(255, 255, 255);">
@@ -156,12 +205,12 @@
 
     {% if accepted == True %}
     <div class="d-flex justify-content-center flex-row">
-        <h1>The accepted tasks homepage!</h1>
+        <img src="{% static "widebrick.jpg" %}" class="img-fluid" alt="wide pic">
     </div>
     <div class="container-lg">
         <div class="row">
             <div class="col-xl-4">
-                <div class="container text-white border py-3 my-3" style="background-color:  rgb(1, 1, 129);">
+                <div class="container text-white border py-3 my-3" style="background-color:  #00263A;">
                     <div class="d-flex align-items-center flex-column">
                         <h2>Find more tasks to complete</h2>
                         <a href="/explore_tasks"><button type="button" class="btn btn-primary">Explore</button></a>
@@ -169,7 +218,7 @@
                 </div>
             </div>
             <div class="col-xl-4">
-                <div class="container text-white border py-3 my-3 overflow-auto" style="background-color:  rgb(1, 1, 129);height: 900px;">
+                <div class="container text-white border py-3 my-3 overflow-auto" style="background-color:  #00263A;height: 900px;">
                     <h2>Completed tasks</h2>
                     {% for task in user_completed_tasks %}
                     <div class="card bg-white rounded shadow text-black border py-2 my-2" style="background-color:  rgb(255, 255, 255);">
@@ -204,7 +253,7 @@
                 </div>
             </div>
             <div class="col-xl-4">
-                <div class="container text-white border py-3 my-3 overflow-auto" style="background-color:  rgb(1, 1, 129);height: 900px;">
+                <div class="container text-white border py-3 my-3 overflow-auto" style="background-color:  #00263A;height: 900px;">
                     <h2>Queued Tasks</h2>
                     {% for task in user_accepted_tasks %}
                     <div class="card bg-white rounded shadow text-black border py-2 my-2" style="background-color:  rgb(255, 255, 255);">
