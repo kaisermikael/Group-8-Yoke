@@ -29,10 +29,12 @@ The current working version of Yoke is only a prototype. Requirements to run the
 
 # Build Instructions
 - with the dependancies installed as described above, navigate to the folder containing the "manage.py" file
-- once there run the following commands:
+- once there run the following commands for first time setup:
 - ```python3 manage.py makemigrations yokeApp```
 - ```python3 manage.py migrate```
 - ```python3 manage.py seed```
+- ```python3 manage.py runserver```
+- If you have already run the first time setup commands you can then just run the following command:
 - ```python3 manage.py runserver```
 # Unit Testing Instructions
 For additional testing information please see the YOKE testing document in the docs folder
