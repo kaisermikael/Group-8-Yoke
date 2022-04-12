@@ -72,7 +72,7 @@ class AccountInfo(View):
                                                                 "last_name": last_name,
                                                                 "username": username,
                                                                 "account_balance": f'{account_balance:,}',
-                                                                is_admin_user})
+                                                                "is_admin_user": is_admin_user})
 
 # this view corresponds to the 'explore_tasks' endpoint and returns a page with all currently unassigned tasks
 class ExploreTasksPage(View):
