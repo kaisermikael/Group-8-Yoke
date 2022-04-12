@@ -13,6 +13,7 @@ import json
 from django.http import HttpResponseNotFound
 from decimal import Decimal
 
+
 # this view corresponds to the 'home/<str:home_type>/' and 'home' endpoints, it returns a dynamic homepage
 #   displaying posted, completed, queued, etc. tasks specific to a given user
 class HomePage(View):
@@ -44,17 +45,20 @@ class HomePage(View):
                                                      "user_accepted_tasks": user_accepted_tasks,
                                                      "user_completed_tasks": user_completed_tasks})
 
+
 # this view is our about page and shouldn't mess with anything else
 class AboutPage(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'yokeapp/about.html', {})
 
+
 # this view corresponds to the 'login' endpoint
 class LoginPage(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'yokeapp/login.html', {})
+
 
 # this view corresponds to the 'account_info' endpoint
 class AccountInfo(View):
@@ -67,11 +71,26 @@ class AccountInfo(View):
         last_name = user_info.last_name
         username = user_info.username
         account_balance = user_data.account_balance
-        decimal_amount = ((str(account_balance)).split('.'))[1]
-        return render(request, 'yokeapp/account_details.html', {"first_name": first_name,
-                                                                "last_name": last_name,
-                                                                "username": username,
-                                                                "account_balance": f'{account_balance:,}'})
+        is_admin_user = False
+        return_dict = {"first_name": first_name,
+                       "last_name": last_name,
+                       "username": username,
+                       "account_balance": f'{account_balance:,}',
+                       "is_admin_user": is_admin_user}
+
+        if user_data.username == "admin":
+            return_dict["is_admin_user"] = True
+            user_count = UserData.objects.filter(account_deletion_date=None).count()
+            users_list = UserData.objects.filter(account_deletion_date=None)
+            task_count = Task.objects.filter(task_deletion_time=None).count()
+            tasks_list = Task.objects.filter(task_deletion_time=None)
+            return_dict["user_count"] = user_count
+            return_dict["users_list"] = users_list
+            return_dict["task_count"] = task_count
+            return_dict["tasks_list"] = tasks_list
+
+        return render(request, 'yokeapp/account_details.html', return_dict)
+
 
 # this view corresponds to the 'explore_tasks' endpoint and returns a page with all currently unassigned tasks
 class ExploreTasksPage(View):
@@ -82,6 +101,7 @@ class ExploreTasksPage(View):
         unassigned_tasks = Task.objects.filter(queued_by_user_id=None, completed_by_user_id=None)
 
         return render(request, 'yokeapp/explore_tasks.html', {"unassigned_tasks": unassigned_tasks})
+
 
 class AddFunds(View):
 
@@ -122,6 +142,7 @@ class CreateTaskPage(View):
 
         return redirect('home/posted/')
 
+
 # this view corresponds to the 'queue_task/<str:task_id>/' endpoint and contains logic for queueing tasks
 class QueueTask(View):
 
@@ -144,6 +165,7 @@ class QueueTask(View):
         # send user back to explore page
         return redirect('/explore_tasks')
 
+
 # this view corresponds to the 'dequeue_task/<str:task_id>/' endpoint and contains logic for dequeueing tasks
 class DeQueueTask(View):
 
@@ -163,6 +185,7 @@ class DeQueueTask(View):
         # send user back to accepted tasks homepage
         return redirect('/home/accepted')
 
+
 # this view corresponds to the 'delete_task/<str:task_id>/' endpoint and contains logic for marking tasks as deleted
 class DeleteTask(View):
 
@@ -176,21 +199,27 @@ class DeleteTask(View):
             target_task = (Task.objects.filter(task_id=task_id))[0]
             # find out how much this task was worth
             task_cost = target_task.task_cost
+            platform_fee = task_cost * Decimal(0.10)
             # get the ids of the user paying and user to be paid
             user_id_to_pay = target_task.completed_by_user_id
             paying_user_id = target_task.created_by_user_id
             # get the user objects from ids
             owed_user = UserData.objects.filter(user_id=user_id_to_pay)[0]
             paying_user = UserData.objects.filter(user_id=paying_user_id)[0]
+            admin_user = UserData.objects.filter(username="admin")[0]
             # make the transaction
             paying_user.account_balance -= task_cost
+            paying_user.account_balance -= Decimal(platform_fee)
             paying_user.save()
             owed_user.account_balance += task_cost
             owed_user.save()
+            admin_user.account_balance += Decimal(platform_fee)
+            admin_user.save()
             target_task.delete()
 
         # send user back to posted tasks homepage
         return redirect('/home/posted')
+
 
 # this view corresponds to the 'complete_task/<str:task_id>/' endpoint and contains logic for marking tasks as complete
 class CompleteTask(View):
