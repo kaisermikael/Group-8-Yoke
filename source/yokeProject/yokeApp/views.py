@@ -65,14 +65,25 @@ class AccountInfo(View):
         username = user_info.username
         account_balance = user_data.account_balance
         is_admin_user = False
+        return_dict = {"first_name": first_name,
+                       "last_name": last_name,
+                       "username": username,
+                       "account_balance": f'{account_balance:,}',
+                       "is_admin_user": is_admin_user}
+
         if user_data.username == "admin":
-            is_admin_user = True
-        decimal_amount = ((str(account_balance)).split('.'))[1]
-        return render(request, 'yokeapp/account_details.html', {"first_name": first_name,
-                                                                "last_name": last_name,
-                                                                "username": username,
-                                                                "account_balance": f'{account_balance:,}',
-                                                                "is_admin_user": is_admin_user})
+            return_dict["is_admin_user"] = True
+            user_count = UserData.objects.filter(account_deletion_date=None).count()
+            users_list = UserData.objects.filter(account_deletion_date=None)
+            task_count = Task.objects.filter(task_deletion_time=None).count()
+            tasks_list = Task.objects.filter(task_deletion_time=None)
+            return_dict["user_count"] = user_count
+            return_dict["users_list"] = users_list
+            return_dict["task_count"] = task_count
+            return_dict["tasks_list"] = tasks_list
+
+        return render(request, 'yokeapp/account_details.html', return_dict)
+
 
 # this view corresponds to the 'explore_tasks' endpoint and returns a page with all currently unassigned tasks
 class ExploreTasksPage(View):
@@ -83,6 +94,7 @@ class ExploreTasksPage(View):
         unassigned_tasks = Task.objects.filter(queued_by_user_id=None, completed_by_user_id=None)
 
         return render(request, 'yokeapp/explore_tasks.html', {"unassigned_tasks": unassigned_tasks})
+
 
 class AddFunds(View):
 
