@@ -6,4 +6,7 @@ __pycache__
 *.zip
 *.bak
 db.sqlite3
+*.sqlite3
+.sqlite3
+.sqlite
 migrations/
