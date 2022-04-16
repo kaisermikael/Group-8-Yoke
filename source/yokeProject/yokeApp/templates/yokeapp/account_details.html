@@ -111,6 +111,40 @@
         </div>
     </div>
 
+    {% if is_admin_user == True %}
+    <div class="d-flex flex-column align-items-center py-3">
+        <div class="card shadow mb-2 bg-white rounded" style="padding: 30px">
+            <h2>Statistics: </h2>
+        <div class="d-flex flex-column align-items-left py-3" style="min-width: 700px">
+            <div class="form-outline">
+                <label class="form-label" for="formControlReadonly">User Count:</label>
+              <input
+                class="form-control"
+                id="formControlReadonly"
+                type="text"
+                placeholder="{{ user_count }}"
+                aria-label="readonly input example"
+                readonly
+              />
+            </div>
+            <div class="form-outline">
+                <label class="form-label" for="formControlReadonly">Task Count:</label>
+              <input
+                class="form-control"
+                id="formControlReadonly"
+                type="text"
+                placeholder=" {{ task_count }}"
+                aria-label="readonly input example"
+                readonly
+              />
+            </div>
+
+
+        </div>
+        </div>
+    </div>
+    {% endif %}
+
 
 </body>
 </html>
