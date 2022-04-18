@@ -25,7 +25,7 @@ We will be using the db.sqlite database that comes with the Django framework
 The current working version of Yoke is only a prototype. Requirements to run the project locally:
 * ensure python is installed locally on your system
 * clone the project repo
-* install the required dependancies via the requiremnts.txt file and the following command: "pip install -r requirements.txt"
+* install the required dependencies via the dependencies.txt file and the following command: "pip install -r dependencies.txt"
 
 # Build Instructions
 - with the dependancies installed as described above, navigate to the folder containing the "manage.py" file
